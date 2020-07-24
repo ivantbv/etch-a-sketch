@@ -2,10 +2,11 @@
     display: grid;
     grid-template-columns: repeat(16, 22px);
     grid-template-rows: repeat(16, 22px);
+    justify-content: center;
+    height: 600px;
+    width: 600px;
 }
 
-/* .grid {
-    /* margin: .5px;
-    padding: .5px;
-} */
+.grid {
+}
 

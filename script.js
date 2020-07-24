@@ -1,17 +1,29 @@
 let container = document.querySelector('.container');
+let div;
 
-// let divStyle = div.style;
-
-for (let i = 0; i < 16*16; i++) {
-
-  let div = document.createElement('div');
-div.className = 'grid';
-div.style.border = '.5px solid';
-// div.style.width = '25px';
-// div.style.height = '25px';
-container.appendChild(div);
+function setGrid() {
+    let i = 0;
+    while (i < 16*16) {
+        div = document.createElement('div');
+        div.className = 'grid';
+        div.style.border = '.1px solid silver';
+        container.appendChild(div);
+        i++
+    }
 }
+setGrid()
 
+let selectAll = document.querySelectorAll('.container > .grid');
 
-// container.style.width = '900px';
-// container.style.height = '900px';
+        for (let i = 0; i < selectAll.length; i++) {
+            selectAll[i].addEventListener('mouseover', function() {
+                selectAll[i].style.backgroundColor = 'black';
+            });
+        }
+
+  
+    // for (const myDiv of Array.from(div)) {
+    //     myDiv.addEventListener("click", function() {
+    //         this.style.backgroundColor = "grey"
+    //     })
+    // }
