@@ -2,18 +2,15 @@ let div;
 let initialGrid;
 let container = document.querySelector('.container');
 
-container.style.cssText = ('width: 450px;', 'height: 450px;');
+container.style.cssText = ('width: 550px;', 'height: 550px;');
 
 let contStyles = window.getComputedStyle(container);
 
  //container.style.cssText = ('text-align:center;')
 
 function setGrid(x, y) {
-//    let x;
-//      let y;
 
-container.style['grid-template'] = `repeat(${x}, 20px) / repeat(${y}, 20px)`;
-
+container.style['grid-template'] = `repeat(${x}, 29px) / repeat(${y}, 29px)`;
 
     for (let i = 0; i < x; i++) {
         for (let j = 0; j < y; j++) {
@@ -21,8 +18,8 @@ container.style['grid-template'] = `repeat(${x}, 20px) / repeat(${y}, 20px)`;
         div = document.createElement('div');
         div.classList.add('grid');
         div.style.border = '.2px solid grey';
-        div.style.height = '20px';
-        div.style.width = '20px';
+        div.style.height = '29px';
+        div.style.width = '29px';
         container.appendChild(div);
         }
     }
@@ -62,16 +59,14 @@ draw();
                 div.classList.remove('grid');
 
             //window.location.reload(true);
-            if (Number(initialGrid) > 0 && Number(initialGrid) <= 30) {
-
-
+            if (Number(initialGrid) > 0 && Number(initialGrid) <= 50) {
 
                    let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
 
                    //parsedFunc / Math.pow(initialGrid, 2)
                   
-                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, 20px) / repeat(${Number(initialGrid)}, 20px)`;
-                   //container.style['grid-template-rows'] = `repeat(${Number(finalRes)}, 20px)`;
+                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${320/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${320/Number(initialGrid)}px)`;
+                    //container.style['grid-template-rows'] = `repeat(${Number(finalRes)}, 20px)`;
 
                   //container.classList.toggle('container');
                 for (let i = 0; i < initialGrid * initialGrid; i++) {
@@ -79,12 +74,12 @@ draw();
                     div = document.createElement('div');
                     div.classList.add('grid');
                     div.style.border = '0.2px solid grey';
-                    div.style.height = '20px';
-                    div.style.width = '20px';
+                    div.style.height = `${320/Number(initialGrid)}px`;
+                    div.style.width = `${320/Number(initialGrid)}px`;
                     container.appendChild(div);
                 }
                 
-            } else if (Number(initialGrid) > 30 || Number(initialGrid) < 0) {
+            } else if (Number(initialGrid) > 50 || Number(initialGrid) < 0) {
                alert('Please, enter a number between 1 and 100')
             }
             selectAll = document.querySelectorAll('.container > .grid');
@@ -112,7 +107,7 @@ draw();
            
             
 
-            setGrid(16, 16);
+            setGrid();
             selectAll = document.querySelectorAll('.container > .grid');
             clickSketch();
 
@@ -133,6 +128,6 @@ draw();
 
         //input that takes the user input instead of prompting
 
-        //an eraser
-  
-        //problem - container expands down, but rows stay the same cell count. Must fix this.
+        //an eraser that can erase cells individualy
+
+        //a color picker

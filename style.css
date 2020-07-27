@@ -23,3 +23,22 @@ body {
     display: flex;
 }
 
+.check input {
+    cursor: pointer; 
+
+  }
+
+#checkbox {
+    /* top: 0;
+    left: 0; */
+    height: 27px;
+    width: 27px;
+    background-color: rgb(74, 158, 189);    
+  }
+  .check {
+    display: inline-block;
+    height: 60px;
+    width: 99px;
+    border: solid rgb(16, 189, 241) 2px;
+  }
+  
