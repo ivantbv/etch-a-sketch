@@ -2,6 +2,7 @@ let div;
 let initialGrid;
 let container = document.querySelector('.container');
 
+
 container.style.cssText = ('width: 550px;', 'height: 550px;');
 
 let contStyles = window.getComputedStyle(container);
@@ -10,7 +11,7 @@ let contStyles = window.getComputedStyle(container);
 
 function setGrid(x, y) {
 
-container.style['grid-template'] = `repeat(${x}, 29px) / repeat(${y}, 29px)`;
+container.style['grid-template'] = `repeat(${x}, 30px) / repeat(${y}, 30px)`;
 
     for (let i = 0; i < x; i++) {
         for (let j = 0; j < y; j++) {
@@ -18,13 +19,15 @@ container.style['grid-template'] = `repeat(${x}, 29px) / repeat(${y}, 29px)`;
         div = document.createElement('div');
         div.classList.add('grid');
         div.style.border = '.2px solid grey';
-        div.style.height = '29px';
-        div.style.width = '29px';
+        div.style.height = '30px';
+        div.style.width = '30px';
         container.appendChild(div);
         }
     }
 }
 setGrid(16, 16);
+
+
 
 //let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
 
@@ -48,10 +51,11 @@ draw();
         }
 
         let btn = document.querySelector('#btn');
+        let buttonClicked = 0
         
         let reset = btn.addEventListener('click', function() {
             
-            let initialGrid = prompt(`Choose the number of cells on the grid. Max. 25`);
+            initialGrid = prompt(`Choose the number of cells on the grid. Max. 25`);
             
             while (container.hasChildNodes()) {
                 container.removeChild(container.firstChild);
@@ -61,11 +65,9 @@ draw();
             //window.location.reload(true);
             if (Number(initialGrid) > 0 && Number(initialGrid) <= 50) {
 
-                   let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
-
-                   //parsedFunc / Math.pow(initialGrid, 2)
+                   //let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
                   
-                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${320/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${320/Number(initialGrid)}px)`;
+                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px)`;
                     //container.style['grid-template-rows'] = `repeat(${Number(finalRes)}, 20px)`;
 
                   //container.classList.toggle('container');
@@ -74,18 +76,22 @@ draw();
                     div = document.createElement('div');
                     div.classList.add('grid');
                     div.style.border = '0.2px solid grey';
-                    div.style.height = `${320/Number(initialGrid)}px`;
-                    div.style.width = `${320/Number(initialGrid)}px`;
+                    div.style.height = `${480/Number(initialGrid)}px`;
+                    div.style.width = `${480/Number(initialGrid)}px`;
                     container.appendChild(div);
                 }
                 
             } else if (Number(initialGrid) > 50 || Number(initialGrid) < 0) {
                alert('Please, enter a number between 1 and 100')
+               return initialGrid;
             }
             selectAll = document.querySelectorAll('.container > .grid');
             draw();
+            ++buttonClicked;
             
         });
+
+        //click sketch function
 
         function clickSketch() {
             for (let i = 0; i < selectAll.length; i++) {
@@ -99,20 +105,42 @@ draw();
 
         clickDraw.addEventListener('click', function() {
 
-
             while (container.hasChildNodes()) {
                 container.removeChild(container.firstChild);
               }
                 div.classList.remove('grid');
            
+            // if (document.getElementById('#btn') == true) {
+            //     setGrid(initialGrid, initialGrid);
+            // } else {
+            //     setGrid(16,16)
+            // }
             
+            if (buttonClicked >= 1) {
+                while (container.hasChildNodes()) {
+                    container.removeChild(container.firstChild);
+                  }
+                    div.classList.remove('grid');
 
-            setGrid();
+                
+                for (let i = 0; i < initialGrid * initialGrid; i++) {
+                    container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px)`;
+                    div = document.createElement('div');
+                    div.classList.add('grid');
+                    div.style.border = '0.2px solid grey';
+                    div.style.height = `${initialGrid/Number(initialGrid)}px`;
+                    div.style.width = `${initialGrid/Number(initialGrid)}px`;
+                    //container.appendChild(div);
+                }
+                
+                setGrid(initialGrid, initialGrid);
+            } else {
+                setGrid(16,16);
+            }
             selectAll = document.querySelectorAll('.container > .grid');
             clickSketch();
 
         })
-
 
         //button to clear grid out of the color
 
@@ -125,6 +153,19 @@ draw();
         })
 
         //checkox to turn on and off grid cells and leave only white canvas to draw on
+        let checkB = document.querySelector('#checkbox');
+
+        checkB.addEventListener('click', function() {
+            // div = document.createElement('div');
+            // div.classList.add('grid');
+            // div.style.border = '0px solid';
+
+            container.children;
+
+            !checkbox.checked ? div.style.border = '' : div.style.border = '.2px solid grey';
+            
+            console.log(div);
+        })
 
         //input that takes the user input instead of prompting
 
