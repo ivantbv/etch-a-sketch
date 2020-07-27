@@ -2,14 +2,17 @@ let div;
 let initialGrid;
 let container = document.querySelector('.container');
 
-container.style.cssText = ('width: 340px;', 'text-align: center;');
+container.style.cssText = ('width: 450px;', 'height: 450px;');
 
-function setGrid() {
-   x = 16;
-     y = 16;
-    
-container.style['grid-template-columns'] = `repeat(${x}, 18px)`;
-container.style['grid-template-rows'] = `repeat(${y}, 18px)`;
+let contStyles = window.getComputedStyle(container);
+
+ //container.style.cssText = ('text-align:center;')
+
+function setGrid(x, y) {
+//    let x;
+//      let y;
+
+container.style['grid-template'] = `repeat(${x}, 20px) / repeat(${y}, 20px)`;
 
 
     for (let i = 0; i < x; i++) {
@@ -18,47 +21,60 @@ container.style['grid-template-rows'] = `repeat(${y}, 18px)`;
         div = document.createElement('div');
         div.classList.add('grid');
         div.style.border = '.2px solid grey';
-        div.style.height = '1fr';
-        div.style.width = '1fr';
+        div.style.height = '20px';
+        div.style.width = '20px';
         container.appendChild(div);
         }
     }
 }
-setGrid()
+setGrid(16, 16);
 
- //use this with grid to set a dynamic grid instead of the CSSone
+//let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
 
  let selectAll = document.querySelectorAll('.container > .grid');
 
  function draw() {
     for (let i = 0; i < selectAll.length; i++) {
         selectAll[i].addEventListener('mouseover', function() {
-            selectAll[i].style.backgroundColor = 'violet';
+            selectAll[i].style.backgroundColor = 'lightseagreen';
         });
     }
 }
 draw();
-        
+
+//let parsedGrid = parseInt(contStyles.getPropertyValue('height'))
+
+        let parsedFunc = function(a, b) {
+            a = parseInt(contStyles.getPropertyValue('height'));
+            b = parseInt(contStyles.getPropertyValue('width'));
+        return Number(a) + Number(b)
+        }
+
         let btn = document.querySelector('#btn');
         
-        let reset = btn.addEventListener('click', function promptMsg() {
+        let reset = btn.addEventListener('click', function() {
             
-            initialGrid = prompt('Please, choose the number of cells on the grid. Max. 100');
+            let initialGrid = prompt(`Choose the number of cells on the grid. Max. 25`);
             
-            //window.location.reload(true);
-            if (Number(initialGrid) > 0 && Number(initialGrid) <= 100) {
+            while (container.hasChildNodes()) {
+                container.removeChild(container.firstChild);
+              }
+                div.classList.remove('grid');
 
-                while (container.hasChildNodes()) {
-                    container.removeChild(container.firstChild);
-                  }
-                    div.classList.remove('grid');
+            //window.location.reload(true);
+            if (Number(initialGrid) > 0 && Number(initialGrid) <= 30) {
+
+
+
+                   let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
+
+                   //parsedFunc / Math.pow(initialGrid, 2)
+                  
+                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, 20px) / repeat(${Number(initialGrid)}, 20px)`;
+                   //container.style['grid-template-rows'] = `repeat(${Number(finalRes)}, 20px)`;
 
                   //container.classList.toggle('container');
                 for (let i = 0; i < initialGrid * initialGrid; i++) {
-
-                    container.style['grid-template-columns'] = `repeat(${Number(initialGrid)}, 20px)`;
-                    container.style['grid-template-rows'] = `repeat(${Number(initialGrid)}, 20px)`;
-                    //container.style.width = '320px;'
 
                     div = document.createElement('div');
                     div.classList.add('grid');
@@ -68,23 +84,55 @@ draw();
                     container.appendChild(div);
                 }
                 
-            } else if (Number(initialGrid) > 100 || Number(initialGrid) < 0) {
+            } else if (Number(initialGrid) > 30 || Number(initialGrid) < 0) {
                alert('Please, enter a number between 1 and 100')
             }
-
+            selectAll = document.querySelectorAll('.container > .grid');
+            draw();
+            
         });
+
+        function clickSketch() {
+            for (let i = 0; i < selectAll.length; i++) {
+                selectAll[i].addEventListener('click', function() {
+                    selectAll[i].style.backgroundColor = 'lightseagreen';
+                });
+            }
+        }
        
+        let clickDraw = document.querySelector('.click-sketch');
+
+        clickDraw.addEventListener('click', function() {
+
+
+            while (container.hasChildNodes()) {
+                container.removeChild(container.firstChild);
+              }
+                div.classList.remove('grid');
+           
+            
+
+            setGrid(16, 16);
+            selectAll = document.querySelectorAll('.container > .grid');
+            clickSketch();
+
+        })
+
+
+        //button to clear grid out of the color
+
+        let clearGrid = document.querySelector('.reset-grid') 
+
+        clearGrid.addEventListener('click', function() {
+            for (let i = 0; i < selectAll.length; i++) {
+                selectAll[i].style.backgroundColor = '';
+                }
+        })
+
+        //checkox to turn on and off grid cells and leave only white canvas to draw on
+
+        //input that takes the user input instead of prompting
+
+        //an eraser
   
-
-  
-
-        //MUST GET TO DRAW ON THE NEWLY CREATED GRID AND MUST FIT IN THE MAIN CONTAINER!
-
-     // Add a button to the top of the screen which will clear the current grid and send the 
-    // user a popup asking for how many squares per side to make the new grid. 
-     // Once entered the new grid should be generated in the same total space as before 
-    // (e.g. 960px wide) and now you’ve got a new sketch pad.
-
-    // Research button tags in HTML and how you can make a JavaScript function run when one is
-        //  clicked.
-        // Also check out prompts
+        //problem - container expands down, but rows stay the same cell count. Must fix this.

@@ -1,24 +1,25 @@
 body {
     text-align: center;
     display: flex;
-    height: 0 auto;
-    width: 0 auto;
+  
 }
 
 .wrapper {
-    height: 200px;
+
 }
 
 .container{
 
     display: grid;
-    align-content: center;
+    justify-content: center;
     margin: 0 auto;
-   
+    text-align: center;
+    
 } 
 
 .grid {
     /* height: 1fr;
     width: 1fr; */
+    display: flex;
 }
 
