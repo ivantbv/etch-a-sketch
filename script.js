@@ -2,7 +2,6 @@ let div;
 let initialGrid;
 let container = document.querySelector('.container');
 
-
 container.style.cssText = ('width: 550px;', 'height: 550px;');
 
 let contStyles = window.getComputedStyle(container);
@@ -27,8 +26,6 @@ container.style['grid-template'] = `repeat(${x}, 30px) / repeat(${y}, 30px)`;
 }
 setGrid(16, 16);
 
-
-
 //let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
 
  let selectAll = document.querySelectorAll('.container > .grid');
@@ -52,19 +49,45 @@ draw();
 
         let btn = document.querySelector('#btn');
         let buttonClicked = 0
+
+//checkox to turn on and off grid cells and leave only white canvas to draw on
+        let divStyles;
+        let divBorderStyle;
+        let checkB = document.querySelector('#checkbox');
+        let allGridDivs;           
+     
+       let switchGrid = checkB.addEventListener('click', function() {
+        divStyles = window.getComputedStyle(div);
+        divBorderStyle = divStyles.getPropertyValue('border');
+        allGridDivs = document.querySelectorAll('.container > div');
+
+                if (!checkB.checked) {
+                    for (div of allGridDivs) {
+                        div.style.border = '';
+                  }
+            } else if (checkB.checked) {
+                for (div of allGridDivs) {
+                    div.style.border = '.2px solid grey';
+                }
+            }            
+        })
+
+        //new grid with input
         
         let reset = btn.addEventListener('click', function() {
-            
-            initialGrid = prompt(`Choose the number of cells on the grid. Max. 25`);
-            
+            divStyles = window.getComputedStyle(div);
+            divBorderStyle = divStyles.getPropertyValue('border');
+            checkB = document.querySelector('#checkbox');
+            allGridDivs = document.querySelectorAll('.container > div');
+
+            initialGrid = prompt(`Choose the number of cells on the grid. Max. 69`);
             while (container.hasChildNodes()) {
                 container.removeChild(container.firstChild);
               }
                 div.classList.remove('grid');
 
             //window.location.reload(true);
-            if (Number(initialGrid) > 0 && Number(initialGrid) <= 50) {
-
+            if (Number(initialGrid) > 0 && Number(initialGrid) <= 69) {
                    //let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
                   
                    container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px)`;
@@ -80,15 +103,14 @@ draw();
                     div.style.width = `${480/Number(initialGrid)}px`;
                     container.appendChild(div);
                 }
-                
-            } else if (Number(initialGrid) > 50 || Number(initialGrid) < 0) {
-               alert('Please, enter a number between 1 and 100')
-               return initialGrid;
+  
+            } else if (Number(initialGrid) > 69 || Number(initialGrid) < 0) {
+               alert('Please, enter a number between 1 and 69')
+               return this;
             }
             selectAll = document.querySelectorAll('.container > .grid');
             draw();
             ++buttonClicked;
-            
         });
 
         //click sketch function
@@ -122,7 +144,6 @@ draw();
                   }
                     div.classList.remove('grid');
 
-                
                 for (let i = 0; i < initialGrid * initialGrid; i++) {
                     container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px)`;
                     div = document.createElement('div');
@@ -150,22 +171,10 @@ draw();
             for (let i = 0; i < selectAll.length; i++) {
                 selectAll[i].style.backgroundColor = '';
                 }
-        })
+        });
 
-        //checkox to turn on and off grid cells and leave only white canvas to draw on
-        let checkB = document.querySelector('#checkbox');
 
-        checkB.addEventListener('click', function() {
-            // div = document.createElement('div');
-            // div.classList.add('grid');
-            // div.style.border = '0px solid';
 
-            container.children;
-
-            !checkbox.checked ? div.style.border = '' : div.style.border = '.2px solid grey';
-            
-            console.log(div);
-        })
 
         //input that takes the user input instead of prompting
 
