@@ -1,5 +1,6 @@
 let div;
 let initialGrid;
+let brushColor;
 let container = document.querySelector('.container');
 
 container.style.cssText = ('width: 550px;', 'height: 550px;');
@@ -28,6 +29,9 @@ setGrid(16, 16);
 
 //let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
 
+
+
+
  let selectAll = document.querySelectorAll('.container > .grid');
 
  function draw() {
@@ -38,6 +42,27 @@ setGrid(16, 16);
     }
 }
 draw();
+
+let rainbowMash = document.querySelector('#rainbow');
+
+rainbowMash.addEventListener('click', function() {
+    function getRandomRgb() {
+        var num = Math.round(0xffffff * Math.random());
+        var r = num >> 16;
+        var g = num >> 8 & 255;
+        var b = num & 255;
+        return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+      }
+      
+      function draw() {
+        for (let i = 0; i < selectAll.length; i++) {
+            selectAll[i].addEventListener('mouseover', function() {
+                selectAll[i].style.backgroundColor = getRandomRgb();
+            });
+        }
+    }
+    draw();
+})
 
 //let parsedGrid = parseInt(contStyles.getPropertyValue('height'))
 
@@ -153,13 +178,28 @@ draw();
                     div.style.width = `${initialGrid/Number(initialGrid)}px`;
                     //container.appendChild(div);
                 }
-                
-                setGrid(initialGrid, initialGrid);
+                setGrid(16, 16);
             } else {
                 setGrid(16,16);
             }
             selectAll = document.querySelectorAll('.container > .grid');
             clickSketch();
+
+            if (document.getElementById('rainbow').clicked == true) {
+                function getRandomRgb() {
+                    var num = Math.round(0xffffff * Math.random());
+                    var r = num >> 16;
+                    var g = num >> 8 & 255;
+                    var b = num & 255;
+                    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                }
+
+                                    for (let i = 0; i < selectAll.length; i++) {
+                        selectAll[i].addEventListener('click', function() {
+                            selectAll[i].style.backgroundColor = getRandomRgb();
+                        });
+                    }
+            }
 
         })
 
@@ -174,10 +214,15 @@ draw();
         });
 
 
-
-
         //input that takes the user input instead of prompting
 
         //an eraser that can erase cells individualy
 
         //a color picker
+
+// I use divs to style them
+// then add event listeners
+// if it is clicked, a variable called 'brushColor' is changed to the div's color
+
+
+

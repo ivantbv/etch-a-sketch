@@ -1,16 +1,223 @@
 html, body {
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
 }
 
 body {
     text-align: center;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
   
 }
 
 .wrapper {
 
+}
+
+.canv {
+  padding-top: 64px;
+}
+
+#myCanvas {
+  border: 2px solid black;
+}
+
+.color-selection {
+  display: grid;
+  padding-top: 20px;
+  justify-content: space-around;
+  width: 210px;
+  height: 510px;
+  background-color: rgba(30, 143, 255, 0.301);
+}
+
+.white, .black, .yellow, .brown, .purple, .grey, .violet, .pink, .red, .dodgerblue, .orange, .green, .cyan, .silver, .lightseagreen {
+  height: 30px;
+  width: 40px;
+  background-color: rgba(57, 179, 10, 0.109);
+  border-radius: 4px;
+}
+
+.black {
+  background-color: black;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.black:hover {
+  transform: scale(0.1px);
+  background: rgba(0, 0, 0, 0.623);
+  border: .6px dashed grey;
+}
+
+.white {
+  background-color: white;
+  transition: all 0.3s;
+  border: .3px solid grey;
+
+}
+
+.white:hover {
+  transform: scale(0.1px);
+  background: rgba(255, 255, 255, 0.527);
+  border: .6px dashed grey;
+}
+
+.yellow {
+  background-color: yellow;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.yellow:hover {
+  transform: scale(0.1px);
+  background: rgba(255, 255, 0, 0.52);
+  border: .6px dashed grey;
+}
+
+.brown {
+  background-color: brown;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.brown:hover {
+  transform: scale(0.1px);
+  background-color: rgba(165, 42, 42, 0.637);
+  border: .6px dashed grey;
+}
+
+.purple {
+  background-color: purple;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.purple:hover {
+  transform: scale(0.1px);
+  background-color: rgba(128, 0, 128, 0.609);
+  border: .6px dashed grey;
+}
+
+.grey {
+  background-color: grey;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.grey:hover {
+  transform: scale(0.1px);
+  background-color: rgba(128, 128, 128, 0.575);
+  border: .6px dashed grey;
+}
+
+.violet {
+  background-color: violet;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.violet:hover {
+  transform: scale(0.1px);
+  background-color: rgba(238, 130, 238, 0.589);
+  border: .6px dashed grey;
+}
+
+.pink {
+  background-color: pink;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.pink:hover {
+  transform: scale(0.1px);
+  background-color: rgba(255, 192, 203, 0.616);
+  border: .6px dashed grey;
+}
+
+.red {
+  background-color: red;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.red:hover {
+  transform: scale(0.1px);
+  background-color: rgba(255, 0, 0, 0.568);
+  border: .6px dashed grey;
+}
+
+.dodgerblue {
+  background-color: dodgerblue;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.dodgerblue:hover {
+  transform: scale(0.1px);
+  background-color: rgba(30, 143, 255, 0.548);
+  border: .6px dashed grey;
+}
+
+.orange {
+  background-color: orange;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.orange:hover {
+  transform: scale(0.1px);
+  background-color: rgba(255, 166, 0, 0.63);
+  border: .6px dashed grey;
+}
+
+.green {
+  background-color: green;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.green:hover {
+  transform: scale(0.1px);
+  background-color: rgba(0, 128, 0, 0.609);
+  border: .6px dashed grey;
+}
+
+.cyan {
+  background-color: cyan;
+  transition: all 0.3s;
+  border: .3px solid black;
+}
+
+.cyan:hover {
+  transform: scale(0.1px);
+  background-color: rgba(0, 255, 255, 0.424);
+  border: .6px dashed grey;
+}
+
+.silver {
+  background-color: silver;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.silver:hover {
+  transform: scale(0.1px);
+  background-color: rgba(192, 192, 192, 0.657);
+  border: .6px dashed grey
+}
+
+.lightseagreen {
+  background-color: lightseagreen;
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.lightseagreen:hover {
+  transform: scale(0.1px);
+  background-color: rgba(32, 178, 171, 0.596);
+  border: .6px dashed grey;
 }
 
 .container{

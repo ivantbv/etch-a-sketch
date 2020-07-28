@@ -5,10 +5,13 @@
     </head>
 
     <body>
-
-     
-        <button class="reset-grid">Clear Grid</button>
-
+        <div class="canv">
+        <canvas id="myCanvas" width="374" height="374">Your browser does not support Canvas.</canvas>
+    </div>
+        <!-- 
+        // I use divs to style them
+// then add event listeners
+// if it is clicked, a variable called 'brushColor' is changed to the div's color -->
         
         <label class="check"> Grid On/Off <br>
             <input type="checkbox" id="checkbox" checked="checked">
@@ -16,11 +19,33 @@
           </label>
 
         <div class="wrapper">
+            <button class="reset-grid">Clear Grid</button>
+            <button class="colors" id="rainbow">Rainbow Mash</button>
             <div><button id="btn">New Grid</button></div>
 
             <div><button class="click-sketch">Click-to-Sketch</button></div>
         <div class="container"></div>
         </div>
+        <div class="color-selection">
+            
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="yellow"></div>
+            <div class="brown"></div>
+            <div class="purple"></div>
+            <div class="grey"></div>
+            <div class="violet"></div>
+            <div class="pink"></div>
+            <div class="red"></div>
+            <div class="dodgerblue"></div>
+            <div class="orange"></div>
+            <div class="green"></div>
+            <div class="cyan"></div>
+            <div class="silver"></div>
+            <div class="lightseagreen"></div>
+        </div>
+
+
         <script src="script.js">
         </script>
     </body>
