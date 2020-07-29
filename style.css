@@ -28,15 +28,19 @@ body {
   padding-top: 20px;
   justify-content: space-around;
   width: 210px;
-  height: 510px;
+  height: 560px;
   background-color: rgba(30, 143, 255, 0.301);
 }
 
-.white, .black, .yellow, .brown, .purple, .grey, .violet, .pink, .red, .dodgerblue, .orange, .green, .cyan, .silver, .lightseagreen {
+.white, .black, .yellow, .brown, .purple, .grey, .violet, .pink, .red, .dodgerblue, .orange, .green, .cyan, .silver, .lightseagreen, .rainbowmash {
   height: 30px;
   width: 40px;
   background-color: rgba(57, 179, 10, 0.109);
   border-radius: 4px;
+}
+
+.color-selection > div {
+  cursor: pointer;
 }
 
 .black {
@@ -220,6 +224,18 @@ body {
   border: .6px dashed grey;
 }
 
+.rainbowmash {
+  background-color: rgba(0, 0, 0, 0.432);
+  transition: all 0.3s;
+  border: .3px solid grey;
+}
+
+.rainbowmash:hover {
+  transform: scale(0.1px);
+  background-color: rgba(0, 0, 0, 0.432);
+  border: .6px dashed grey;
+}
+
 .container{
 
     display: grid;
@@ -227,10 +243,8 @@ body {
     margin: 0 auto;
     text-align: center;
 
-    place-items: center;
-    
+    place-items: center;  
 } 
-
 .grid {
     /* height: 1fr;
     width: 1fr; */
