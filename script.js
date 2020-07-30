@@ -150,47 +150,6 @@ rainbowMash.addEventListener('click', function() {
             buttonClicked++;
         });
 
-        //click sketch function
-
-
-
-        // clickDraw.addEventListener('click', function() {
-
-        //     // while (container.hasChildNodes()) {
-        //     //     container.removeChild(container.firstChild);
-        //     //   }
-            
-        //     // if (buttonClicked >= 1) {
-        //     //     while (container.hasChildNodes()) {
-        //     //         container.removeChild(container.firstChild);
-        //     //       }
-        //     //        //div.classList.remove('grid');
-
-        //     //     for (let i = 0; i < initialGrid * initialGrid; i++) {
-        //     //         container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px)`;
-        //     //         div = document.createElement('div');
-        //     //         div.classList.add('grid');
-        //     //         div.style.border = '0.2px solid grey';
-        //     //         div.style.height = `${initialGrid/Number(initialGrid)}px`;
-        //     //         div.style.width = `${initialGrid/Number(initialGrid)}px`;
-        //     //     }
-        //     //     setGrid(16, 16);
-        //     // } else {
-        //     //     setGrid(16,16);
-        //     // }
-        //     for (let i = 0; i < selectAll.length; i++) {
-        //         selectAll[i].addEventListener('click', function() {
-        //             selectAll[i].style.backgroundColor = 'lightseagreen';   
-        //         });
-        //     }
-
-        //     //selectAll = document.querySelectorAll('.container > .grid');
-        //     //clickSketch();
-        //     buttonClicked--;
-   
-        // })
-
-
         //button to clear grid out of the color
 
         let clearGrid = document.querySelector('.reset-grid') 
@@ -201,17 +160,21 @@ rainbowMash.addEventListener('click', function() {
                 }
         });
 
-
         //input that takes the user input instead of prompting
 
         //an eraser that can erase cells individualy
 
-        //a color picker
+        let eraser = document.querySelector('.erase');
 
-// I use divs to style them
-// then add event listeners
-// if it is clicked, a variable called 'brushColor' is changed to the div's color
+        eraser.addEventListener('click', function() {
+            for (let i = 0; i < selectAll.length; i++) {
+                selectAll[i].addEventListener('click', function() {
+                    selectAll[i].style.backgroundColor = '';
+                });
+            }
+        })
 
+        //color picker
        let colorB = document.querySelector('.black');
        let colorW = document.querySelector('.white');
        let colorY = document.querySelector('.yellow');
