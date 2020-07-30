@@ -12,16 +12,16 @@ let contStyles = window.getComputedStyle(container);
 
 function setGrid(x, y) {
 
-container.style['grid-template'] = `repeat(${x}, 30px) / repeat(${y}, 30px)`;
+container.style['grid-template'] = `repeat(${x}, 34px) / repeat(${y}, 34px)`;
 
     for (let i = 0; i < x; i++) {
         for (let j = 0; j < y; j++) {
         // container.style.cssText = ('display: grid; grid-template-columns: repeat(16, 20px); grid-template-rows: repeat(16, 20px); width: 320px;'); 
         div = document.createElement('div');
         div.classList.add('grid');
-        div.style.border = '.2px solid grey';
-        div.style.height = '30px';
-        div.style.width = '30px';
+        div.style.border = '.2px solid silver';
+        div.style.height = '34px';
+        div.style.width = '34px';
         container.appendChild(div);
         }
     }
@@ -74,11 +74,11 @@ rainbowMash.addEventListener('click', function() {
     }
     draw();
 })
-        let parsedFunc = function(a, b) {
-            a = parseInt(contStyles.getPropertyValue('height'));
-            b = parseInt(contStyles.getPropertyValue('width'));
-        return Number(a) + Number(b)
-        }
+        // let parsedFunc = function(a, b) {
+        //     a = parseInt(contStyles.getPropertyValue('height'));
+        //     b = parseInt(contStyles.getPropertyValue('width'));
+        // return Number(a) + Number(b)
+        // }
 
         let btn = document.querySelector('#btn');
         
@@ -100,7 +100,7 @@ rainbowMash.addEventListener('click', function() {
                   }
             } else if (checkB.checked) {
                 for (div of allGridDivs) {
-                    div.style.border = '.2px solid grey';
+                    div.style.border = '.2px solid silver';
                 }
             }            
         })
@@ -123,7 +123,7 @@ rainbowMash.addEventListener('click', function() {
             if (Number(initialGrid) > 0 && Number(initialGrid) <= 70) {
                    //let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
                   
-                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px)`;
+                   container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${544/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${544/Number(initialGrid)}px)`;
                     //container.style['grid-template-rows'] = `repeat(${Number(finalRes)}, 20px)`;
 
                   //container.classList.toggle('container');
@@ -131,14 +131,14 @@ rainbowMash.addEventListener('click', function() {
 
                     div = document.createElement('div');
                     div.classList.add('grid');
-                    div.style.border = '0.2px solid grey';
-                    div.style.height = `${480/Number(initialGrid)}px`;
-                    div.style.width = `${480/Number(initialGrid)}px`;
+                    div.style.border = '0.2px solid silver';
+                    div.style.height = `${544/Number(initialGrid)}px`;
+                    div.style.width = `${544/Number(initialGrid)}px`;
                     container.appendChild(div);
                 }
   
             } else if (Number(initialGrid) > 70 || Number(initialGrid) < 0) {
-               alert('Please, enter a number between 1 and 69')
+               alert('Please, enter a number between 1 and 70')
                setGrid(16, 16);
             } else {
                 setGrid(16, 16);
@@ -146,8 +146,6 @@ rainbowMash.addEventListener('click', function() {
 
 
             selectAll = document.querySelectorAll('.container > .grid');
-       
-            buttonClicked++;
         });
 
         //button to clear grid out of the color
@@ -161,6 +159,13 @@ rainbowMash.addEventListener('click', function() {
         });
 
         //input that takes the user input instead of prompting
+
+        //canvas that provides the user with a live preview and sketch download option
+
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+       ctx.fillStyle = div.backgroundColor
 
         //an eraser that can erase cells individualy
 
@@ -191,8 +196,22 @@ rainbowMash.addEventListener('click', function() {
        let colorS = document.querySelector('.silver');
        let colorLSG = document.querySelector('.lightseagreen');
 
+       let colorOl = document.querySelector('.olive');
+       let colorCo = document.querySelector('.coral');
+       let colorCh = document.querySelector('.chocolate');
+       let colorPVR = document.querySelector('.palevioletred');
+       let colorPl = document.querySelector('.plum');
+       let colorCFB = document.querySelector('.cornflowerblue');
+       let colorTur = document.querySelector('.turquoise');
+       let colorOR = document.querySelector('.orangered');
+       let colorBW = document.querySelector('.burlywood');
+
+
+
+
+
        colorB.addEventListener('click', function() {
-                               for (let i = 0; i < selectAll.length; i++) {
+                    for (let i = 0; i < selectAll.length; i++) {
                     selectAll[i].addEventListener('click', function() {
                         selectAll[i].style.backgroundColor = 'black';
                     });
@@ -208,7 +227,6 @@ rainbowMash.addEventListener('click', function() {
              });
          }
     })
-
     colorY.addEventListener('click', function() {
 
          for (let i = 0; i < selectAll.length; i++) {
@@ -217,7 +235,6 @@ rainbowMash.addEventListener('click', function() {
              });
          }
     })
-
     colorBro.addEventListener('click', function() {
 
          for (let i = 0; i < selectAll.length; i++) {
@@ -317,3 +334,39 @@ rainbowMash.addEventListener('click', function() {
              });
          }
     })
+
+    colorOl.addEventListener('click', function() {
+
+        for (let i = 0; i < selectAll.length; i++) {
+            selectAll[i].addEventListener('click', function() {
+                selectAll[i].style.backgroundColor = 'olive';
+            });
+        }
+   })
+
+   colorCo.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'coral';
+        });
+    }
+})
+
+colorCh.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'chocolate';
+        });
+    }
+})
+
+colorPVR.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'palevioletred';
+        });
+    }
+})

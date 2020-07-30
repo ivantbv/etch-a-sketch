@@ -1,30 +1,55 @@
 <!DOCTYPE html> <html>
     <head>
         <link rel="stylesheet" href="style.css" type="text/css">
-        <title>Etch-A-Sketch</title>
+        <title>Sketch Craft</title>
     </head>
 
     <body>
-        <!-- <div class="canv">
-        <canvas id="myCanvas" width="374" height="374">Your browser does not support Canvas.</canvas>
-    </div> -->
+        <h1>Sketch Craft</h1>
+        <div class="canv">
+        <canvas id="myCanvas" width="399" height="399">Your browser does not support Canvas.</canvas>
+    </div>
 
-    <button class="erase">Eraser</button>
-        
+    <div class="container"></div>
+
+    <div class="left-menu">
+        <p><strong>Menu</strong></p> 
+        <button id="btn">New Grid</button>   
 <label class="check"> Grid On/Off <br>
     <input type="checkbox" id="checkbox" checked="checked">
     <span class="checkmark"></span>
   </label>
-
-<div class="wrapper">
-    <button class="reset-grid">Clear Grid</button>
-    <button class="colors" id="rainbow">Hover-o-Rainbow</button>
-    <div><button id="btn">New Grid</button></div>
-
-<div class="container"></div>
-</div>
-<div class="color-selection">
+<!-- <div class="wrapper"> -->
     
+    <svg xmlns="http://www.w3.org/2000/svg" id="rainbow" class="colors icon icon-tabler icon-tabler-wand" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <polyline points="6 21 21 6 18 3 3 18 6 21" />
+        <line x1="15" y1="6" x2="18" y2="9" />
+        <path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+        <path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+      </svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="erase icon icon-tabler icon-tabler-eraser" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <path d="M19 19h-11l-4 -4a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9 9" />
+        <path d="M18 12.3l-6.3 -6.3" />
+      </svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="reset-grid icon icon-tabler icon-tabler-trash" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="10" y1="11" x2="10" y2="17" />
+        <line x1="14" y1="11" x2="14" y2="17" />
+        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+      </svg>
+ 
+      <!-- <button class="reset-grid">Clear Grid</button> -->
+    <!-- <button class="colors" id="rainbow">Hover-o-Rainbow</button> -->
+    
+</div>
+<!-- </div> -->
+<div class="color-selection">    
     <div class="black"></div>
     <div class="white"></div>
     <div class="yellow"></div>
