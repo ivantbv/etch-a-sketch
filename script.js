@@ -1,7 +1,8 @@
 let div;
 let initialGrid;
-let brushColor;
 let container = document.querySelector('.container');
+let clickDraw = document.querySelector('.click-sketch');
+let buttonClicked = 0;
 
 container.style.cssText = ('width: 550px;', 'height: 550px;');
 
@@ -30,30 +31,32 @@ setGrid(16, 16);
 //let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
 
 
-let hoverDrawButton = document.querySelector('#hover-draw');
+//let hoverDrawButton = document.querySelector('#hover-draw');
+
 
  let selectAll = document.querySelectorAll('.container > .grid');
-
+//draw modes 
  function draw() {
-     if (document.getElementsByClassName('black').clicked == true) {
+
+    // for (let i = 0; i < selectAll.length; i++) {
+    //     selectAll[i].addEventListener('mouseover', function() {
+    //         selectAll[i].style.backgroundColor = 'black';
+    //     });
+    // }
+}
+
+function clickSketch() {
     for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('mouseover', function() {
-            selectAll[i].style.backgroundColor = 'black';
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'lightseagreen';   
         });
     }
-    } else if (document.getElementsByClassName('white').clicked == true) {
-        for (let i = 0; i < selectAll.length; i++) {
-            selectAll[i].addEventListener('mouseover', function() {
-                selectAll[i].style.backgroundColor = 'white';
-            });
-        }
-    }
 }
-draw();
+clickSketch();
 
-//let rainbowMash = document.querySelector('#rainbow');
+let rainbowMash = document.querySelector('#rainbow');
 
-
+rainbowMash.addEventListener('click', function() {
     function getRandomRgb() {
         var num = Math.round(0xffffff * Math.random());
         var r = num >> 16;
@@ -61,10 +64,16 @@ draw();
         var b = num & 255;
         return 'rgb(' + r + ', ' + g + ', ' + b + ')';
       }
-getRandomRgb();
-
-
-
+      
+      function draw() {
+        for (let i = 0; i < selectAll.length; i++) {
+            selectAll[i].addEventListener('mouseover', function() {
+                selectAll[i].style.backgroundColor = getRandomRgb();
+            });
+        }
+    }
+    draw();
+})
         let parsedFunc = function(a, b) {
             a = parseInt(contStyles.getPropertyValue('height'));
             b = parseInt(contStyles.getPropertyValue('width'));
@@ -72,7 +81,7 @@ getRandomRgb();
         }
 
         let btn = document.querySelector('#btn');
-        let buttonClicked = 0
+        
 
 //checkox to turn on and off grid cells and leave only white canvas to draw on
         let divStyles;
@@ -97,6 +106,7 @@ getRandomRgb();
         })
 
         //new grid with input
+
         
         let reset = btn.addEventListener('click', function() {
             divStyles = window.getComputedStyle(div);
@@ -104,13 +114,13 @@ getRandomRgb();
             checkB = document.querySelector('#checkbox');
             allGridDivs = document.querySelectorAll('.container > div');
 
-            initialGrid = prompt(`Choose the number of cells on the grid. Max. 69`);
+            initialGrid = prompt(`Choose the number of cells on the grid. Max. 70`);
             while (container.hasChildNodes()) {
                 container.removeChild(container.firstChild);
               }
                 div.classList.remove('grid');
 
-            if (Number(initialGrid) > 0 && Number(initialGrid) <= 69) {
+            if (Number(initialGrid) > 0 && Number(initialGrid) <= 70) {
                    //let finalRes = Math.pow(initialGrid, 2) / parsedFunc; ;
                   
                    container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${480/Number(initialGrid)}px)`;
@@ -127,58 +137,59 @@ getRandomRgb();
                     container.appendChild(div);
                 }
   
-            } else if (Number(initialGrid) > 69 || Number(initialGrid) < 0) {
+            } else if (Number(initialGrid) > 70 || Number(initialGrid) < 0) {
                alert('Please, enter a number between 1 and 69')
-               return this;
+               setGrid(16, 16);
+            } else {
+                setGrid(16, 16);
             }
+
+
             selectAll = document.querySelectorAll('.container > .grid');
-            draw();
-            //colorBlack();
-            ++buttonClicked;
+       
+            buttonClicked++;
         });
 
         //click sketch function
 
-        function clickSketch() {
-            for (let i = 0; i < selectAll.length; i++) {
-                selectAll[i].addEventListener('click', function() {
-                    selectAll[i].style.backgroundColor = 'black';   
-                });
-            }
-        }
-       
-        let clickDraw = document.querySelector('.click-sketch');
 
-        clickDraw.addEventListener('click', function() {
 
-            // while (container.hasChildNodes()) {
-            //     container.removeChild(container.firstChild);
-            //   }
-            //     div.classList.remove('grid');
-           
-            // if (buttonClicked >= 1) {
-            //     while (container.hasChildNodes()) {
-            //         container.removeChild(container.firstChild);
-            //       }
-            //         div.classList.remove('grid');
+        // clickDraw.addEventListener('click', function() {
 
-            //     for (let i = 0; i < initialGrid * initialGrid; i++) {
-            //         container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px)`;
-            //         div = document.createElement('div');
-            //         div.classList.add('grid');
-            //         div.style.border = '0.2px solid grey';
-            //         div.style.height = `${initialGrid/Number(initialGrid)}px`;
-            //         div.style.width = `${initialGrid/Number(initialGrid)}px`;
-            //     }
-            //     setGrid(16, 16);
-            // } else {
-            //     setGrid(16,16);
-            // }
+        //     // while (container.hasChildNodes()) {
+        //     //     container.removeChild(container.firstChild);
+        //     //   }
             
-            selectAll = document.querySelectorAll('.container > .grid');
-            clickSketch();
-            buttonClicked--;
-        })
+        //     // if (buttonClicked >= 1) {
+        //     //     while (container.hasChildNodes()) {
+        //     //         container.removeChild(container.firstChild);
+        //     //       }
+        //     //        //div.classList.remove('grid');
+
+        //     //     for (let i = 0; i < initialGrid * initialGrid; i++) {
+        //     //         container.style['grid-template'] = `repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px) / repeat(${Number(initialGrid)}, ${initialGrid/Number(initialGrid)}px)`;
+        //     //         div = document.createElement('div');
+        //     //         div.classList.add('grid');
+        //     //         div.style.border = '0.2px solid grey';
+        //     //         div.style.height = `${initialGrid/Number(initialGrid)}px`;
+        //     //         div.style.width = `${initialGrid/Number(initialGrid)}px`;
+        //     //     }
+        //     //     setGrid(16, 16);
+        //     // } else {
+        //     //     setGrid(16,16);
+        //     // }
+        //     for (let i = 0; i < selectAll.length; i++) {
+        //         selectAll[i].addEventListener('click', function() {
+        //             selectAll[i].style.backgroundColor = 'lightseagreen';   
+        //         });
+        //     }
+
+        //     //selectAll = document.querySelectorAll('.container > .grid');
+        //     //clickSketch();
+        //     buttonClicked--;
+   
+        // })
+
 
         //button to clear grid out of the color
 
@@ -216,261 +227,130 @@ getRandomRgb();
        let colorC = document.querySelector('.cyan');
        let colorS = document.querySelector('.silver');
        let colorLSG = document.querySelector('.lightseagreen');
-       let colorRainbow = document.querySelector('.rainbowmash');
 
        colorB.addEventListener('click', function() {
-           if (buttonClicked >=0) {
                                for (let i = 0; i < selectAll.length; i++) {
-                    selectAll[i].addEventListener('mouseover', function() {
+                    selectAll[i].addEventListener('click', function() {
                         selectAll[i].style.backgroundColor = 'black';
                     });
                 }
-           } else if (buttonClicked < 0) {
-            for (let i = 0; i < selectAll.length; i++) {
-                selectAll[i].addEventListener('click', function() {
-                    selectAll[i].style.backgroundColor = 'black';
-                });
-            }
-           }
+
        })
 
  
        colorW.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'white';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'white';
              });
          }
-        }
     })
 
     colorY.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'yellow';
-                 });
-             }
-        } else if (buttonClicked < 0) {
+
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'yellow';
              });
          }
-        }
     })
 
     colorBro.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'brown';
-                 });
-             }
-        } else if (buttonClicked < 0) {
+
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'brown';
              });
          }
-        }
     })
 
     colorP.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'purple';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'purple';
              });
          }
-        }
     })
 
     colorG.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'grey';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'grey';
              });
          }
-        }
     })
 
     colorV.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'violet';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'violet';
              });
          }
-        }
     })
 
     colorPi.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'pink';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'pink';
              });
          }
-        }
     })
 
     colorR.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'red';
-                 });
-             }
-        } else if (buttonClicked < 0) {
-         for (let i = 0; i < selectAll.length; i++) {
+          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'red';
              });
          }
-        }
     })
 
     colorDB.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'dodgerblue';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'dodgerblue';
              });
          }
-        }
     })
 
     colorO.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'orange';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'orange';
              });
          }
-        }
     })
 
     colorGreen.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'green';
-                 });
-             }
-        } else if (buttonClicked < 0) {
+
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'green';
              });
          }
-        }
+
     })
 
     colorC.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'cyan';
-                 });
-             }
-        } else if (buttonClicked < 0) {
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'cyan';
              });
          }
-        }
     })
 
     colorS.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'silver';
-                 });
-             }
-        } else if (buttonClicked < 0) {
+
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'silver';
              });
          }
-        }
     })
-
     colorLSG.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = 'lightseagreen';
-                 });
-             }
-        } else if (buttonClicked < 0) {
+
          for (let i = 0; i < selectAll.length; i++) {
              selectAll[i].addEventListener('click', function() {
                  selectAll[i].style.backgroundColor = 'lightseagreen';
              });
          }
-        }
-    })
-
-    colorRainbow.addEventListener('click', function() {
-        if (buttonClicked >=0) {
-                            for (let i = 0; i < selectAll.length; i++) {
-                 selectAll[i].addEventListener('mouseover', function() {
-                     selectAll[i].style.backgroundColor = getRandomRgb();
-                 });
-             }
-        } else if (buttonClicked < 0) {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = getRandomRgb();
-             });
-         }
-        }
     })
