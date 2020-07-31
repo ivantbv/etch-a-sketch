@@ -1,21 +1,26 @@
 html, body {
-  /* height: 100%;
-  width: 100%; */
+  height: 100%;
+  width: 100%;
 }
 
 body {
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   
   background-color: rgba(245, 245, 245, 0.767);
 
-}
 
-h1 {
-  position: absolute;
-  padding-bottom: 600px;
+}
+#header {
+ 
+ position: absolute;
+  top: 0;
+  text-align: center;
+  top: 0;
+  
+
 }
 
 .wrapper {
@@ -45,13 +50,36 @@ padding-top: 64px;
 
 #myCanvas {
 border: 2px solid black;
+border-radius: 3px;
 }
 
-.erase, #rainbow, .reset-grid {
+.erase, #rainbow, .reset-grid, #btn, .take-pic {
   cursor: pointer;
   transition: all 0.3s;
 border: .1px solid rgba(206, 204, 204, 0.699);
 border-radius: 2px;
+}
+
+.take-pic {
+  justify-self: center;
+  align-self: center;
+}
+
+.take-pic:hover {
+  background: rgba(157, 184, 180, 0.233);
+  border: solid .4px grey;
+  border-radius: 7px;
+}
+
+#btn {
+  justify-self: center;
+  align-self: center;
+}
+
+#btn:hover {
+  background: rgba(157, 184, 180, 0.233);
+  border: solid .4px grey;
+  border-radius: 7px;
 }
 
 .erase{
@@ -87,14 +115,12 @@ border: solid .4px grey;
 border-radius: 7px;
 }
 
-
-
 .color-selection {
-display: grid;
-padding-top: 15px;
+display: flex;
 justify-content: space-around;
-width: 222px;
-height: 744px;
+align-items: center;
+width: 180px;
+height: 415px;
 background-color: rgba(30, 143, 255, 0.301);
 border: solid 1px black;
 border-radius: 6px;
@@ -405,11 +431,10 @@ border: .3px solid grey;
 .container{
   display: grid;
   justify-content: center;
-  /* margin: 0 auto; */
   text-align: center;
   border: 4px solid grey;
   border-radius: 4px;
-  place-items: center;
+  /* place-items: center; */
   
 } 
 

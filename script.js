@@ -2,8 +2,6 @@ let div;
 let initialGrid;
 let container = document.querySelector('.container');
 let clickDraw = document.querySelector('.click-sketch');
-let buttonClicked = 0;
-
 container.style.cssText = ('width: 550px;', 'height: 550px;');
 
 let contStyles = window.getComputedStyle(container);
@@ -29,6 +27,22 @@ container.style['grid-template'] = `repeat(${x}, 34px) / repeat(${y}, 34px)`;
 setGrid(16, 16);
 
 //let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
+
+
+
+function screenShot() {
+    let region = document.querySelector('.container');
+    html2canvas(region, {
+      onrendered: function(canvas) {
+        let pngUrl = canvas.toDataURL(); // png in dataURL format
+        let img = document.querySelector(".screen");
+        img.src = pngUrl; 
+  
+        // here you can allow user to set bug-region
+        // and send it with 'pngUrl' to server
+      },
+    });
+  }
 
 
 //let hoverDrawButton = document.querySelector('#hover-draw');
@@ -158,15 +172,6 @@ rainbowMash.addEventListener('click', function() {
                 }
         });
 
-        //input that takes the user input instead of prompting
-
-        //canvas that provides the user with a live preview and sketch download option
-
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-
-       ctx.fillStyle = div.backgroundColor
-
         //an eraser that can erase cells individualy
 
         let eraser = document.querySelector('.erase');
@@ -207,7 +212,8 @@ rainbowMash.addEventListener('click', function() {
        let colorBW = document.querySelector('.burlywood');
 
 
-
+//add an eventListenr on the color-selection div for bubbling the below listeners
+//if needed
 
 
        colorB.addEventListener('click', function() {
@@ -367,6 +373,51 @@ colorPVR.addEventListener('click', function() {
     for (let i = 0; i < selectAll.length; i++) {
         selectAll[i].addEventListener('click', function() {
             selectAll[i].style.backgroundColor = 'palevioletred';
+        });
+    }
+})
+
+colorPl.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'plum';
+        });
+    }
+})
+
+colorCFB.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'cornflowerblue';
+        });
+    }
+})
+
+colorTur.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'turquoise';
+        });
+    }
+})
+
+colorOR.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'orangered';
+        });
+    }
+})
+
+colorBW.addEventListener('click', function() {
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('click', function() {
+            selectAll[i].style.backgroundColor = 'burlywood';
         });
     }
 })
