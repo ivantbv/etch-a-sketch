@@ -26,26 +26,22 @@ container.style['grid-template'] = `repeat(${x}, 34px) / repeat(${y}, 34px)`;
 }
 setGrid(16, 16);
 
-//let parsedRows = parseInt(contStyles.getPropertyValue('grid-template-rows'));
-
-
+//takes a screenshot of the sketch container with whatever is on it
 
 function screenShot() {
     let region = document.querySelector('.container');
     html2canvas(region, {
       onrendered: function(canvas) {
         let pngUrl = canvas.toDataURL(); // png in dataURL format
-        let img = document.querySelector(".screen");
+        let img = document.querySelector('.screen');
         img.src = pngUrl; 
-  
-        // here you can allow user to set bug-region
-        // and send it with 'pngUrl' to server
+        img.style.border = '2px solid grey';
+        img.style.borderRadius = '3px';
+        let wrapper = document.querySelector('.wrapper');
+        
       },
     });
   }
-
-
-//let hoverDrawButton = document.querySelector('#hover-draw');
 
 
  let selectAll = document.querySelectorAll('.container > .grid');
