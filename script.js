@@ -107,19 +107,9 @@ function getRandomRgb() {
 
 let radius = document.querySelector('#radius');
 
-function radiu() {
-    let value = radius.value;
-
-    if ((value !== '') && (value.indexOf('.') === -1)) {
-        
-        value.Math.max(Math.min(value, 10), -10);
-    }
-}
-radiu();
-
 radius.addEventListener('click', function(e) {
     allGridDivs = document.querySelectorAll('.container > div');
-    
+
     function exactValue() {
         if (radius.value !== '') {
             radius.value = parseFloat(radius.value);
