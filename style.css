@@ -48,6 +48,11 @@ body {
   padding-right: 30px; */
 }
 
+#radius {
+  width: 80px;
+  justify-self: center;
+}
+
 strong {
   border: 1px grey solid;
   padding: 5px;
