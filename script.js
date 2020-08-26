@@ -1,10 +1,22 @@
 let div;
+let isClicked = false;
+let resetGrid = false;
 let initialGrid;
 let container = document.querySelector('.container');
 let clickDraw = document.querySelector('.click-sketch');
 container.style.cssText = ('width: 550px;', 'height: 550px;');
 
 let contStyles = window.getComputedStyle(container);
+
+let colors = document.querySelectorAll('.color-selection > div');
+console.log(colors)
+
+function setColors(col) {
+    colors.forEach(color => color.addEventListener('click', function(e){
+        col = this.id
+    }))
+}
+setColors();
 
 function setGrid(x, y) {
 
@@ -40,53 +52,70 @@ function screenShot() {
   }
 
  let selectAll = document.querySelectorAll('.container > .grid');
-//draw modes 
- function draw() {
+//draw modes
 
-    // for (let i = 0; i < selectAll.length; i++) {
-    //     selectAll[i].addEventListener('mouseover', function() {
-    //         selectAll[i].style.backgroundColor = 'black';
-    //     });
-    // }
-}
+// selectAll.forEach(element => element.addEventListener('mouseup', upListener))
 
-function clickSketch() {
+function clickSketch(col) {
     for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'lightseagreen';   
-        });
+        selectAll[i].addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            isClicked = true;
+        }, true);
+    }
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('mousemove', function(e) {
+            e.preventDefault()
+            if (isClicked == true) {
+            selectAll[i].style.backgroundColor = col; 
+        } 
+        }, true);
+    }
+
+    for (let i = 0; i < selectAll.length; i++) {
+        selectAll[i].addEventListener('mouseup', function(e) {
+           e.preventDefault()
+            isClicked = false;
+        },true);
     }
 }
 clickSketch();
 
 let rainbowMash = document.querySelector('#rainbow');
 
-rainbowMash.addEventListener('click', function() {
-    function getRandomRgb() {
-        var num = Math.round(0xffffff * Math.random());
-        var r = num >> 16;
-        var g = num >> 8 & 255;
-        var b = num & 255;
-        return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-      }
-      
-      function draw() {
-        for (let i = 0; i < selectAll.length; i++) {
-            selectAll[i].addEventListener('mouseover', function() {
-                selectAll[i].style.backgroundColor = getRandomRgb();
-            });
-        }
-    }
-    draw();
-})
-        // let parsedFunc = function(a, b) {
-        //     a = parseInt(contStyles.getPropertyValue('height'));
-        //     b = parseInt(contStyles.getPropertyValue('width'));
-        // return Number(a) + Number(b)
-        // }
+function getRandomRgb() {
+    let num = Math.round(0xffffff * Math.random());
+    let r = num >> 16;
+    let g = num >> 8 & 255;
+    let b = num & 255;
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  }
 
-        let btn = document.querySelector('#btn');
-        
+  function draw() {
+      //resetGrid = false;
+    //   for (let i = 0; i < selectAll.length; i++) {
+    //     selectAll[i].addEventListener('mouseover', function() {
+    //         if (resetGrid == true) {
+    //             selectAll[i].style.backgroundColor = clickSketch();
+    //         } else if (resetGrid == false) {
+    //         selectAll[i].style.backgroundColor = getRandomRgb();
+    //     }
+    //     });
+    // }
+    
+}
+rainbowMash.addEventListener('click', (e) => {
+  
+  allGridDivs = document.querySelectorAll('.container > div')
+ 
+  for (div of allGridDivs) {
+       div.style.backgroundColor = getRandomRgb();
+       //div.style.borderRadius = '10px';
+  }
+
+});
+
+    let btn = document.querySelector('#btn');
 
 //checkox to turn on and off grid cells and leave only white canvas to draw on
         let divStyles;
@@ -148,245 +177,136 @@ rainbowMash.addEventListener('click', function() {
         });
 
         //button to clear grid out of the color
-
         let clearGrid = document.querySelector('.reset-grid') 
-
-        clearGrid.addEventListener('click', function() {
+        
+        clearGrid.addEventListener('click', function() {    
             for (let i = 0; i < selectAll.length; i++) {
                 selectAll[i].style.backgroundColor = '';
                 }
+                resetGrid = true;
         });
 
         //eraser that can erase cells individualy
 
         let eraser = document.querySelector('.erase');
-
         eraser.addEventListener('click', function() {
-            for (let i = 0; i < selectAll.length; i++) {
-                selectAll[i].addEventListener('click', function() {
-                    selectAll[i].style.backgroundColor = '';
-                });
-            }
+            clickSketch('');
+            resetGrid = true;
         })
 
         //color picker
-       let colorB = document.querySelector('.black');
-       let colorW = document.querySelector('.white');
-       let colorY = document.querySelector('.yellow');
-       let colorBro = document.querySelector('.brown');
-       let colorP = document.querySelector('.purple');
-       let colorG = document.querySelector('.grey');
-       let colorV = document.querySelector('.violet');
-       let colorPi = document.querySelector('.pink');
-       let colorR = document.querySelector('.red');
-       let colorDB = document.querySelector('.dodgerblue');
-       let colorO = document.querySelector('.orange');
-       let colorGreen = document.querySelector('.green');
-       let colorC = document.querySelector('.cyan');
-       let colorS = document.querySelector('.silver');
-       let colorLSG = document.querySelector('.lightseagreen');
+       let colorB = document.querySelector('#black');
+       let colorW = document.querySelector('#white');
+       let colorY = document.querySelector('#yellow');
+       let colorBro = document.querySelector('#brown');
+       let colorP = document.querySelector('#purple');
+       let colorG = document.querySelector('#grey');
+       let colorV = document.querySelector('#violet');
+       let colorPi = document.querySelector('#pink');
+       let colorR = document.querySelector('#red');
+       let colorDB = document.querySelector('#dodgerblue');
+       let colorO = document.querySelector('#orange');
+       let colorGreen = document.querySelector('#green');
+       let colorC = document.querySelector('#cyan');
+       let colorS = document.querySelector('#silver');
+       let colorLSG = document.querySelector('#lightseagreen');
+       let colorOl = document.querySelector('#olive');
+       let colorCo = document.querySelector('#coral');
+       let colorCh = document.querySelector('#chocolate');
+       let colorPVR = document.querySelector('#palevioletred');
+       let colorPl = document.querySelector('#plum');
+       let colorCFB = document.querySelector('#cornflowerblue');
+       let colorTur = document.querySelector('#turquoise');
+       let colorOR = document.querySelector('#orangered');
+       let colorBW = document.querySelector('#burlywood');
 
-       let colorOl = document.querySelector('.olive');
-       let colorCo = document.querySelector('.coral');
-       let colorCh = document.querySelector('.chocolate');
-       let colorPVR = document.querySelector('.palevioletred');
-       let colorPl = document.querySelector('.plum');
-       let colorCFB = document.querySelector('.cornflowerblue');
-       let colorTur = document.querySelector('.turquoise');
-       let colorOR = document.querySelector('.orangered');
-       let colorBW = document.querySelector('.burlywood');
 
-       colorB.addEventListener('click', function() {
-                    for (let i = 0; i < selectAll.length; i++) {
-                    selectAll[i].addEventListener('click', function() {
-                        selectAll[i].style.backgroundColor = 'black';
-                    });
-                }
+       colorB.addEventListener('click', function() {       
+        clickSketch('black');
+       //resetGrid = true;  
        })
  
        colorW.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'white';
-             });
-         }
-    })
-    colorY.addEventListener('click', function() {
+        clickSketch('white');
+        })
+        colorY.addEventListener('click', function() {
+            clickSketch('yellow');
+        })
+        colorBro.addEventListener('click', function() {
+            clickSketch('brown');
+        })
 
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'yellow';
-             });
-         }
-    })
-    colorBro.addEventListener('click', function() {
-
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'brown';
-             });
-         }
-    })
-
-    colorP.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'purple';
-             });
-         }
-    })
+        colorP.addEventListener('click', function() {
+            clickSketch('purple');
+        })
 
     colorG.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'grey';
-             });
-         }
+         clickSketch('grey');
     })
 
     colorV.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'violet';
-             });
-         }
+         clickSketch('violet');
     })
     colorPi.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'pink';
-             });
-         }
+         clickSketch('pink');
     })
     colorR.addEventListener('click', function() {
-          for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'red';
-             });
-         }
+        clickSketch('red')
     })
     colorDB.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'dodgerblue';
-             });
-         }
+        clickSketch('dodgerblue')
     })
 
     colorO.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'orange';
-             });
-         }
+        clickSketch('orange')
     })
 
     colorGreen.addEventListener('click', function() {
 
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'green';
-             });
-         }
+        clickSketch('green')
 
     })
     colorC.addEventListener('click', function() {
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'cyan';
-             });
-         }
+        clickSketch('cyan')
     })
 
     colorS.addEventListener('click', function() {
-
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'silver';
-             });
-         }
+        clickSketch('silver')
     })
     colorLSG.addEventListener('click', function() {
-
-         for (let i = 0; i < selectAll.length; i++) {
-             selectAll[i].addEventListener('click', function() {
-                 selectAll[i].style.backgroundColor = 'lightseagreen';
-             });
-         }
+        clickSketch('lightseagreen')
     })
     colorOl.addEventListener('click', function() {
-
-        for (let i = 0; i < selectAll.length; i++) {
-            selectAll[i].addEventListener('click', function() {
-                selectAll[i].style.backgroundColor = 'olive';
-            });
-        }
+        clickSketch('olive')
    })
 
    colorCo.addEventListener('click', function() {
 
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'coral';
-        });
-    }
+    clickSketch('coral')
 })
 colorCh.addEventListener('click', function() {
-
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'chocolate';
-        });
-    }
+    clickSketch('chocolate')
 })
 
 colorPVR.addEventListener('click', function() {
-
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'palevioletred';
-        });
-    }
+    clickSketch('palevioletred');
 })
 colorPl.addEventListener('click', function() {
-
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'plum';
-        });
-    }
+    clickSketch('plum')
 })
 
 colorCFB.addEventListener('click', function() {
 
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'cornflowerblue';
-        });
-    }
+    clickSketch('cornflowerblue');
 })
 colorTur.addEventListener('click', function() {
 
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'turquoise';
-        });
-    }
+    clickSketch('turquoise')
 })
 colorOR.addEventListener('click', function() {
-
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'orangered';
-        });
-    }
+    clickSketch('orangered')
 })
 
 colorBW.addEventListener('click', function() {
-
-    for (let i = 0; i < selectAll.length; i++) {
-        selectAll[i].addEventListener('click', function() {
-            selectAll[i].style.backgroundColor = 'burlywood';
-        });
-    }
+    clickSketch('burlywood');
 })
