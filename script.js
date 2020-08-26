@@ -91,20 +91,6 @@ function getRandomRgb() {
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
   }
 
-  function draw() {
-      //resetGrid = false;
-    //   for (let i = 0; i < selectAll.length; i++) {
-    //     selectAll[i].addEventListener('mouseover', function() {
-    //         if (resetGrid == true) {
-    //             selectAll[i].style.backgroundColor = clickSketch();
-    //         } else if (resetGrid == false) {
-    //         selectAll[i].style.backgroundColor = getRandomRgb();
-    //     }
-    //     });
-    // }
-    
-}
-
 let radius = document.querySelector('#radius');
 
 radius.addEventListener('click', function(e) {
@@ -114,12 +100,12 @@ radius.addEventListener('click', function(e) {
         if (radius.value !== '') {
             radius.value = parseFloat(radius.value);
     
-            if (initialGrid > 40 && radius.value > 4) {
-                radius.value = 4;
+            if (initialGrid > 40 && radius.value > 5) {
+                radius.value = 5;
                } else if (radius.value < 0)
                radius.value = 0;
-            else if (radius.value > 10)
-                radius.value = 10;
+            else if (radius.value > 11)
+                radius.value = 11;
         } 
     } 
     exactValue();
