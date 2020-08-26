@@ -37,7 +37,7 @@ setGrid(16, 16);
 
 //takes a screenshot of the sketch container with whatever is on it
 
-function screenShot() {
+function screenShot(el) {
     let region = document.querySelector('.container');
     html2canvas(region, {
       onrendered: function(canvas) {
@@ -46,7 +46,30 @@ function screenShot() {
         img.src = pngUrl; 
         img.style.border = '2px solid grey';
         img.style.borderRadius = '3px';
-        let wrapper = document.querySelector('.wrapper');          
+        let wrapper = document.querySelector('.wrapper');
+
+        downloadImg = function(el) {         
+            //document.body.appendChild(el);
+             let image = canvas.toDataURL("image/png");
+             el.href = image;
+             //el.href.style.border = '2px solid black';
+  }
+  let link = document.createTextNode('Save Sketch')
+  let dl = document.getElementById('download')
+  //.textContent = 'Save Sketch'
+  dl.style.cssText = 'display: inline-block; background: ButtonFace; color: ButtonText; padding: 6px 8px; background-color: rgba(10, 130, 209, 0.507); border-radius: 3px;'
+  dl.appendChild(link);
+ 
+  if (document.getElementById('download').childNodes.length > 1) {
+     dl.removeChild(dl.lastChild);
+  }
+
+//   let arrayed = Array.from(appended)
+  
+//   arrayed.filter((item, pos) => arrayed.indexOf(item) == pos)
+//   String(arrayed);
+
+//   console.log(String(arrayed));
       },
     });
   }
@@ -102,10 +125,11 @@ radius.addEventListener('click', function(e) {
     
             if (initialGrid > 40 && radius.value > 5) {
                 radius.value = 5;
-               } else if (radius.value < 0)
-               radius.value = 0;
-            else if (radius.value > 11)
-                radius.value = 11;
+               } else if (initialGrid < 40 && initialGrid > 30 && radius.value > 8) {
+               radius.value = 8;
+            }  else if (radius.value > 14) {
+                radius.value = 14;
+            }
         } 
     } 
     exactValue();

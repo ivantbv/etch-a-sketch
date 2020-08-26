@@ -450,7 +450,6 @@ border: .3px solid grey;
 
   /* border: 2px solid grey;
   border-radius: 2px; */
-  
 } 
 
 .border-cont {
@@ -523,4 +522,22 @@ border: .3px solid grey;
   height: 20px;
   background: #4c5eaf;
   cursor: pointer;
+}
+
+#download {
+  text-decoration: none;
+     display: inline-block; 
+     /* padding: 2px 8px; */
+    background: ButtonFace; 
+    color: ButtonText; 
+    border-radius: 4px;
+    font-size: 20px;
+    
+     background-color: rgba(17, 81, 155, 0.507); 
+    border-color: rgba(17, 81, 155, 0.507);
+    /* ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight  */
+}
+
+#download:active {
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
 }
