@@ -26,7 +26,7 @@ container.style['grid-template'] = `repeat(${x}, 34px) / repeat(${y}, 34px)`;
         for (let j = 0; j < y; j++) {
         div = document.createElement('div');
         div.classList.add('grid');
-        div.style.border = '.2px solid silver';
+        div.style.border = '.1px solid silver';
         div.style.height = '34px';
         div.style.width = '34px';
         container.appendChild(div);
@@ -104,13 +104,49 @@ function getRandomRgb() {
     // }
     
 }
+
+let radius = document.querySelector('#radius');
+
+function radiu() {
+    let value = radius.value;
+
+    if ((value !== '') && (value.indexOf('.') === -1)) {
+        
+        value.Math.max(Math.min(value, 10), -10);
+    }
+}
+radiu();
+
+radius.addEventListener('click', function(e) {
+    allGridDivs = document.querySelectorAll('.container > div');
+    
+    function exactValue() {
+        if (radius.value !== '') {
+            radius.value = parseFloat(radius.value);
+    
+            if (initialGrid > 40 && radius.value > 4) {
+                radius.value = 4;
+               } else if (radius.value < 0)
+               radius.value = 0;
+            else if (radius.value > 10)
+                radius.value = 10;
+        } 
+    } 
+    exactValue();
+
+    for (div of allGridDivs) {
+      //  div.style.backgroundColor = getRandomRgb();
+        div.style.borderRadius = `${radius.value}px`;
+   }
+})
+
 rainbowMash.addEventListener('click', (e) => {
   
   allGridDivs = document.querySelectorAll('.container > div')
  
   for (div of allGridDivs) {
        div.style.backgroundColor = getRandomRgb();
-       //div.style.borderRadius = '10px';
+       //div.style.borderRadius = `${radius}px`;
   }
 
 });
@@ -134,7 +170,7 @@ rainbowMash.addEventListener('click', (e) => {
                   }
             } else if (checkB.checked) {
                 for (div of allGridDivs) {
-                    div.style.border = '.2px solid silver';
+                    div.style.border = '.1px solid silver';
                 }
             }            
         })
@@ -161,7 +197,7 @@ rainbowMash.addEventListener('click', (e) => {
 
                     div = document.createElement('div');
                     div.classList.add('grid');
-                    div.style.border = '0.2px solid silver';
+                    div.style.border = '0.1px solid silver';
                     div.style.height = `${544/Number(initialGrid)}px`;
                     div.style.width = `${544/Number(initialGrid)}px`;
                     container.appendChild(div);

@@ -37,12 +37,13 @@ body {
 
 .left-menu {
   display: grid;
-  height: 410px;
+  height: 444px;
   width: 150px;
   background-color: rgba(84, 149, 223, 0.356);
   justify-content: center;
   border: 2px grey solid;
   border-radius: 3px;
+  padding-bottom: 7px;
   /* padding-left: 30px;
   padding-right: 30px; */
 }
@@ -464,12 +465,14 @@ border: .3px solid grey;
 }
 
 .check input {
-  cursor: pointer; 
-
+  cursor: pointer;
 }
 
 .check {
   align-self: center;
+
+  justify-self: center;
+  margin-bottom: 7px;
 }
 
 #checkbox {
