@@ -54,7 +54,7 @@ function screenShot(el) {
              el.href = image;
              //el.href.style.border = '2px solid black';
   }
-  let link = document.createTextNode('Save Sketch')
+  let link = document.createTextNode('Save Sketch ⤵️')
   let dl = document.getElementById('download')
   //.textContent = 'Save Sketch'
   dl.style.cssText = 'display: inline-block; background: ButtonFace; color: ButtonText; padding: 6px 8px; background-color: rgba(10, 130, 209, 0.507); border-radius: 3px;'
@@ -65,13 +65,22 @@ function screenShot(el) {
   }
 
 //   let arrayed = Array.from(appended)
-  
 //   arrayed.filter((item, pos) => arrayed.indexOf(item) == pos)
-//   String(arrayed);
-
-//   console.log(String(arrayed));
       },
     });
+  }
+
+  function showTooltip(evt, text) {
+    let tooltip = document.getElementById("tooltip");
+    tooltip.innerHTML = text;
+    tooltip.style.display = "block";
+    tooltip.style.left = evt.pageX + 13 + 'px';
+    tooltip.style.top = evt.pageY + 16 + 'px';
+  }
+  
+  function hideTooltip() {
+    var tooltip = document.getElementById("tooltip");
+    tooltip.style.display = "none";
   }
 
  let selectAll = document.querySelectorAll('.container > .grid');

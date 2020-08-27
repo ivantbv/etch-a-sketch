@@ -4,13 +4,9 @@ html, body {
 
 body {
  
-  /* display: flex; */
-  /* justify-content: space-evenly;
-  align-items: center; */
-  
+   /* display: flex; */
+   justify-content: center;  
   background-color: rgba(63, 154, 207, 0.089);
-
-
 }
 
 .main-wrap {
@@ -21,18 +17,13 @@ body {
   height: 99%;
   width: 100%;
 }
-/* #header {
- 
- position: absolute;
-  top: 0;
-  text-align: center;
-} */
 
 #footer {
   /* position: absolute; */
   display: flex;
-  justify-content: center;
-  padding-top: 2%;
+  justify-content: end;
+  padding-top: 20px;
+  align-self: flex-end;
 }
 
 .left-menu {
@@ -83,6 +74,13 @@ border-radius: 2px;
   background: rgba(157, 184, 180, 0.233);
   border: solid .4px grey;
   border-radius: 7px;
+}
+
+#tooltip {
+  background: rgba(165, 209, 238, 0.774);
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 3px;
 }
 
 #btn {
@@ -531,8 +529,8 @@ border: .3px solid grey;
     background: ButtonFace; 
     color: ButtonText; 
     border-radius: 4px;
-    font-size: 20px;
-    
+    font-size: 19px;
+
      background-color: rgba(17, 81, 155, 0.507); 
     border-color: rgba(17, 81, 155, 0.507);
     /* ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight  */
