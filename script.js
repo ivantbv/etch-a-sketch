@@ -1,6 +1,5 @@
 let div;
 let isClicked = false;
-let resetGrid = false;
 let initialGrid;
 let container = document.querySelector('.container');
 let clickDraw = document.querySelector('.click-sketch');
@@ -9,14 +8,6 @@ container.style.cssText = ('width: 550px;', 'height: 550px;');
 let contStyles = window.getComputedStyle(container);
 
 let colors = document.querySelectorAll('.color-selection > div');
-console.log(colors)
-
-function setColors(col) {
-    colors.forEach(color => color.addEventListener('click', function(e){
-        col = this.id
-    }))
-}
-setColors();
 
 function setGrid(x, y) {
 
@@ -62,10 +53,8 @@ function screenShot(el) {
  
   if (document.getElementById('download').childNodes.length > 1) {
      dl.removeChild(dl.lastChild);
-  }
+      }
 
-//   let arrayed = Array.from(appended)
-//   arrayed.filter((item, pos) => arrayed.indexOf(item) == pos)
       },
     });
   }
@@ -157,7 +146,6 @@ rainbowMash.addEventListener('click', (e) => {
        div.style.backgroundColor = getRandomRgb();
        //div.style.borderRadius = `${radius}px`;
   }
-
 });
 
     let btn = document.querySelector('#btn');
@@ -228,7 +216,6 @@ rainbowMash.addEventListener('click', (e) => {
             for (let i = 0; i < selectAll.length; i++) {
                 selectAll[i].style.backgroundColor = '';
                 }
-                resetGrid = true;
         });
 
         //eraser that can erase cells individualy
@@ -236,7 +223,6 @@ rainbowMash.addEventListener('click', (e) => {
         let eraser = document.querySelector('.erase');
         eraser.addEventListener('click', function() {
             clickSketch('');
-            resetGrid = true;
         })
 
         //color picker
@@ -265,10 +251,8 @@ rainbowMash.addEventListener('click', (e) => {
        let colorOR = document.querySelector('#orangered');
        let colorBW = document.querySelector('#burlywood');
 
-
        colorB.addEventListener('click', function() {       
-        clickSketch('black');
-       //resetGrid = true;  
+        clickSketch('black');  
        })
  
        colorW.addEventListener('click', function() {
@@ -307,7 +291,6 @@ rainbowMash.addEventListener('click', (e) => {
     })
 
     colorGreen.addEventListener('click', function() {
-
         clickSketch('green')
 
     })
@@ -326,7 +309,6 @@ rainbowMash.addEventListener('click', (e) => {
    })
 
    colorCo.addEventListener('click', function() {
-
     clickSketch('coral')
 })
 colorCh.addEventListener('click', function() {
@@ -341,11 +323,9 @@ colorPl.addEventListener('click', function() {
 })
 
 colorCFB.addEventListener('click', function() {
-
     clickSketch('cornflowerblue');
 })
 colorTur.addEventListener('click', function() {
-
     clickSketch('turquoise')
 })
 colorOR.addEventListener('click', function() {
@@ -355,3 +335,10 @@ colorOR.addEventListener('click', function() {
 colorBW.addEventListener('click', function() {
     clickSketch('burlywood');
 })
+
+// function setColors(col) {
+//     colors.forEach(color => color.addEventListener('click', function(e){
+//         col = this.id
+//     }))
+// }
+// setColors();
