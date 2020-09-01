@@ -15,3 +15,5 @@ This is a browser sketchpad app that has the following options:
 -Eraser;
 
 -Screen capture and image download in .png;
+
+Try it live here: https://ivantbv.github.io/etch-a-sketch/
